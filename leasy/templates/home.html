@@ -1,0 +1,36 @@
+
+{% extends "_layouts/base.html" %}
+{% set active_page = "home" %}
+
+{% block content %}
+<!-- Main jumbotron for a primary marketing message or call to action -->
+<div class="jumbotron">
+
+  <h1>Welcome to leasy</h1>
+
+  <p>Rent payment and lease management the way it should be.</p>
+  <p><a href="/about" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+</div>
+
+<div class="body-content">
+
+  <!-- Example row of columns -->
+  <div class="row">
+    <div class="col-lg-4">
+      <h2>Pay rent</h2>
+      <p>Pay your rent instantly right from leasy and track payment history with clear displays.</p>
+      <p><a class="btn btn-default" href="#">View details &raquo;</a></p>
+    </div>
+    <div class="col-lg-4">
+      <h2>Communicate</h2>
+      <p>Your landlord is available and accessible right from leasy. Make maintanence requests and see payment alerts right in leasy. leasy takes down the barriers between tenants and landlords.
+      Start your lease the right way with easy and secure forms available right in leasy.</p>
+      <p><a href="#" class="btn btn-default" href="#">View details &raquo;</a></p>
+   </div>
+    <div class="col-lg-4">
+      <h2>Social</h2>
+      <p>You have roommates. leasy allows you to make sure everyone is making their rent and allows you to keep tabs on your apartment activity.</p>
+      <p><a href="#" class="btn btn-default" href="#">View details &raquo;</a></p>
+    </div>
+  </div>
+{% endblock %}
