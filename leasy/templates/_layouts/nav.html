@@ -26,8 +26,8 @@
         <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a></li>
       {% endfor %}
       {% if session.logged_in %}
-      <li><a href="/members/payment/">Your payments</a></li>
-        <li><a href="/members/apartment/">Your apartment</a></li>
+      <li><a href="{{ url_for('member.payment') }}">Your payments</a></li>
+      <li><a href="{{ url_for('member.apartment') }}">Your apartment</a></li>
       {% endif %}
     </ul>
     {% if session.logged_in %}

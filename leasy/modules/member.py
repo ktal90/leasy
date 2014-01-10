@@ -13,12 +13,12 @@ blueprint = Blueprint('member', __name__,
 def members():
     return render_template("members.html")
   
-@blueprint.route("/members/payment/")
+@blueprint.route("/payment/")
 @login_required
 def payment():
     return render_template("payment.html")
   
-@blueprint.route("/members/apartment/")
+@blueprint.route("/apartment/")
 @login_required
 def apartment():
     return render_template("apartment.html")
