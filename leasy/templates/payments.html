@@ -1,17 +1,20 @@
 
 {% extends "_layouts/base.html" %}
+{% set active_page = 'payments' %}
+
 {% block content %}
-    <h1>Good evening, {{ session.firstname }}</h1>
+    <h1>Your payment summary</h1>
     <hr>
     <br>
     <h2>Upcoming payments</h2>
     <hr>
 
     <br>
-    <h2>Maintenance status</h2>
+    <h2>Past payments</h2>
     <hr>
 
     <br>
-    <h2>Split bills</h2>
+    <h2>Roommate payment status</h2>
     <hr>
+
 {% endblock %}

@@ -1,8 +1,10 @@
 {% set navigation_bar = [
     ('/', 'index', 'Home'),
-    ('/about/', 'about', 'About')
+    ('/payments/' , 'payments', 'Your payments'),
+    ('/maintenance/', 'maintenance', 'Maintenance'),
+    ('/split/' ,'split', 'Split bills')
 ] -%}
-{% set active_page = active_page|default('index') -%}
+{% set active_page = active_page|default('index') %}
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -25,10 +27,6 @@
       {% for href, id, caption in navigation_bar %}
         <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a></li>
       {% endfor %}
-      {% if session.logged_in %}
-      <li><a href="{{ url_for('member.payment') }}">Your payments</a></li>
-      <li><a href="{{ url_for('member.apartment') }}">Your apartment</a></li>
-      {% endif %}
     </ul>
     {% if session.logged_in %}
     <a class="btn btn-default btn-sm navbar-btn navbar-right" href="{{ url_for('public.logout') }}">Log out</a>

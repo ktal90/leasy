@@ -10,7 +10,7 @@ from leasy.models import db
 
 assets_env = Environment()
 
-def create_app(config_object, env):
+def create_app(config_object, env='dev'):
     '''An application factory, as explained here:
         http://flask.pocoo.org/docs/patterns/appfactories/
 

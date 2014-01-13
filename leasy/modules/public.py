@@ -16,19 +16,24 @@ blueprint = Blueprint('public', __name__,
 
 @blueprint.route("/", methods=["GET", "POST"])
 def home():
+    if session['logged_in']:
+        return render_template("members.html")
+
     form = LoginForm(request.form)
     if request.method == 'POST':
-        u = User.query.filter_by(email=request.form['email'],
-                                password=request.form['password']).first()
+        u = User.query.filter_by(email=request.form['email']).first()
         if u is None:
-            error = 'Invalid email or password.'
+            error = 'This email address does not have a leasy account.'
             flash(error, 'warning')
-        else:
+        elif u.check_password(request.form['password']):
             session['logged_in'] = True
             session['email'] = u.email
             session['firstname'] = u.firstname
             flash("You are logged in.", 'success')
             return redirect(url_for("member.members"))
+        elif not check_password(request.form['password']):
+            error = 'Incorrect password. Try again.'
+            flash(error, 'warning')
     return render_template("home.html", form=form)
 
 @blueprint.route('/logout/')
@@ -36,21 +41,21 @@ def logout():
     session.pop('logged_in', None)
     session.pop('email', None)
     flash('You are logged out.', 'info')
-    return redirect(url_for('public.home'))
+    return redirect(url_for('public.home')) 
 
 @blueprint.route("/register/", methods=['GET', 'POST'])
 def register():
-    form = RegisterForm(request.form, csrf_enabled=False)
+    form = RegisterForm(request.form)
     if form.validate_on_submit():
         new_user = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
         try:
             db.session.add(new_user)
             db.session.commit()
-            flash("Thank you for registering. You can now log in.", 'success')
+            flash("Thank you for registering. You may now log in.", 'success')
             return redirect(url_for('public.home'))
         except IntegrityError as err:
             print(err)
-            flash("An account with that email address already exists. Try again.", 'warning')
+            flash("An account with that email address already exists.", 'warning')
     else:
         flash_errors(form)
     return render_template('register.html', form=form)

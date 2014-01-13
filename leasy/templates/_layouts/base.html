@@ -31,6 +31,7 @@
 {% block body %}
 {% with form=form  %}
 {% include "_layouts/nav.html" %}
+{% set active_page = active_page|default('index') %}
 {% endwith %}
 
 <header>{% block header %}{% endblock %}</header>
