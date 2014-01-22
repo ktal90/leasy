@@ -7,10 +7,11 @@ from webassets.loaders import PythonLoader
 
 from leasy import assets
 from leasy.models import db
+from leasy.settings import ProdConfig, DevConfig
 
 assets_env = Environment()
 
-def create_app(config_object, env='dev'):
+def create_app(config_object=ProdConfig):
     '''An application factory, as explained here:
         http://flask.pocoo.org/docs/patterns/appfactories/
 
@@ -19,7 +20,6 @@ def create_app(config_object, env='dev'):
     '''
     app = Flask(__name__)
     app.config.from_object(config_object)
-    app.config['ENV'] = env
     # Initialize SQLAlchemy
     db.init_app(app)
     # Register asset bundles

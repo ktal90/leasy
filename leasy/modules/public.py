@@ -16,8 +16,9 @@ blueprint = Blueprint('public', __name__,
 
 @blueprint.route("/", methods=["GET", "POST"])
 def home():
-    if session['logged_in']:
-        return render_template("members.html")
+    print session
+    if 'logged_in' in session:
+        return redirect(url_for("member.members"))
 
     form = LoginForm(request.form)
     if request.method == 'POST':
