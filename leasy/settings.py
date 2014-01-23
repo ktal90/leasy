@@ -8,7 +8,7 @@ class Config(object):
 
 class ProdConfig(Config):
     DEBUG = False
-    SQLALCHEMY_DATABASE_URI = 'postgresql://0.0.0.0/example'
+    SQLALCHEMY_DATABASE_URI = 'postgres://lynmohoiumcrdk:QMO_3j5Bn6S0p90Syi-cMXkcyE@ec2-54-197-241-97.compute-1.amazonaws.com:5432/d5r3k95etc3bhn'
     SQLALCHEMY_ECHO = False
 
 class DevConfig(Config):

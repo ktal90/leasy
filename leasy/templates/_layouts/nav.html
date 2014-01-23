@@ -24,9 +24,13 @@
   <!-- Collect the nav links, forms, and other content for toggling -->
   <div class="collapse navbar-collapse navbar-ex1-collapse">
     <ul class="nav navbar-nav">
-      {% for href, id, caption in navigation_bar %}
-        <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a></li>
-      {% endfor %}
+      {% if session.logged_in %}
+        {% for href, id, caption in navigation_bar %}
+          <li{% if id == active_page %} class="active"{% endif %}><a href="{{ href|e }}">{{ caption|e }}</a></li>
+        {% endfor %}
+      {% else %}
+        <li class="active"><a href="/">Home</a></li>
+      {% endif %}
     </ul>
     {% if session.logged_in %}
     <a class="btn btn-default btn-sm navbar-btn navbar-right" href="{{ url_for('public.logout') }}">Log out</a>

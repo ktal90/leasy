@@ -7,10 +7,12 @@ from flask.ext.script import Manager, Shell, Server
 from leasy import models
 from leasy.app import create_app
 from leasy.models import db
+from leasy.settings import ProdConfig, DevConfig
 
-env = os.environ.get("LEASY_ENV", 'prod')
-app = create_app("leasy.settings.{0}Config"
-                    .format(env.capitalize()), env)
+if os.environ.get("{{leasy | upper}}_ENV") == 'prod':
+    app = create_app(ProdConfig)
+else:
+    app = create_app(DevConfig)
 
 manager = Manager(app)
 TEST_CMD = "nosetests"
